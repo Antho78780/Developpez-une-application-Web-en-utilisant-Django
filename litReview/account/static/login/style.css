@@ -1,0 +1,30 @@
+#titre {
+    text-align: center;
+}
+section {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+::placeholder {
+    text-align: center;
+    font-weight: bold;
+}
+input {
+    width: 300px;
+    height: 30px;
+    margin: 5px;
+}
+#titre_connexion {
+    text-align: center;
+}
+#button2 {
+    margin-top: 10px;
+    margin-left: 75%;
+}
+button {
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+}

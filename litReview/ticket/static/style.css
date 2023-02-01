@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+}
+nav {
+    display: flex;
+    justify-content: right;
+}
+.margin_nav {
+    margin: 10px;
+}
+.form-group{
+    width: 1300px;
+    margin: auto;
+}
+.button {
+    margin-left: 80%;
+    margin-top: 5%;
+    width: 125px;
+}
+.titre_center {
+    text-align: center;
+}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Page Accueil</p>
+<h1 id="titre">LITReview</h1>
+<section>
+	<div>
+		<h2>Inscrivez vous maintenant</h2>
+		<button class="button" id="button1"><a href="{% url 'register' %}">S'inscrire</a></button>
+	</div>
+	<form action="" method="POST">{% csrf_token %}
+		<h2 id="titre_connexion">Connectez-vous</h2>
+		<div>
+			<input type="text" class="champ" placeholder="Nom d'utilisateur" name="username">
+		</div>
+		<div>
+			<input type="password" class="champ" placeholder="Mot de passe" name="pwd">
+		</div>
+		<input type="submit" value="Se connecter">
+	</form>
+</section>
+{% endblock %}
+
