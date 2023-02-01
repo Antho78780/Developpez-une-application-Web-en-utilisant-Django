@@ -1,0 +1,25 @@
+section {
+    text-align: center;
+ }
+ #titre {
+     text-align: center;
+ }
+ ::placeholder {
+     text-align: center;
+     font-weight: bold;
+ }
+ input {
+     width: 350px;
+     height: 35px;
+ }
+ button, .input_register {
+     height: 30px;
+     width: 100px;
+     border: 1px solid black;
+ }
+ .field_register {
+    margin-top: 10px;
+ }
+ #block_button_register {
+    margin-top: 30px;
+ }
