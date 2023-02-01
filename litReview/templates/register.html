@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>Formulaire d'inscription</p>
+<h1 id="titre">LITReview</h1>
+<section>
+	<form action="" method="POST">{% csrf_token %}
+		<h2>Inscrivez-vous</h2>
+
+		<div>
+			<input type="text" class="field_register" placeholder="Nom d'utilisateur" name="username">
+			<input type="password" class="field_register" placeholder="Mot de passe" name="pwd">
+			<input type="password" class="field_register" placeholder="Confirmez le mot de passe" name="checked_pwd">
+		</div>
+
+		<div id="block_button_register">
+			<button><a href="{% url 'login' %}">Retourner</a></button>
+			<input type="submit" value="S'inscrire" class="input_register">
+		</div>
+	</form>
+</section>
+{% endblock %}
