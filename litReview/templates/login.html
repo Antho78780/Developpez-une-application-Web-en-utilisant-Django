@@ -1,19 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'login.css' %}"/>
+{% endblock head %}
+
 {% block content %}
-<p>Page Accueil</p>
-<h1 id="titre">LITReview</h1>
-<section>
-	<div>
-		<h2>Inscrivez vous maintenant</h2>
-		<button><a href="{% url 'register' %}">S'inscrire</a></button>
-	</div>
-	
-	<form action="" method="POST">{% csrf_token %}
-		<h2 id="titre_connexion">Connectez-vous</h2>
-		<input type="text" class="field_login" placeholder="Nom d'utilisateur" name="username">
-		<input type="password" class="field_login" placeholder="Mot de passe" name="pwd">
-		<input type="submit" class="input_login field_login" value="Se connecter">
-	</form>
-</section>
+	<p>Page Accueil</p>
+	<h1 id="titre">LITReview</h1>
+	<section>
+		<div>
+			<h2>Inscrivez vous maintenant</h2>
+			<button class="button_register"><a href="{% url 'register' %}">S'inscrire</a></button>
+		</div>
+
+		<form action="" method="POST">{% csrf_token %}
+			<h2 id="titre_connexion">Connectez-vous</h2>
+			<input type="text" class="field_login" placeholder="Nom d'utilisateur" name="username">
+			<input type="password" class="field_login" placeholder="Mot de passe" name="pwd">
+			<input type="submit" class="input_login field_login" value="Se connecter">
+		</form>
+	</section>
 {% endblock %}
 
