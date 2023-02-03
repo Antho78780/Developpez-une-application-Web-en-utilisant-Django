@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'ticket.css' %}"/>
+{% endblock head %}
+
+{% block content %}
+<body>
+    <p>Créer un ticket</p>
+    <div>
+        <p class="titre_center">LITReview</p>
+        <nav>
+            <a class="margin_nav">Flux</a>
+            <a class="margin_nav">Posts</a>
+            <a class="margin_nav">Abonnements</a>
+            <a class="margin_nav">Se déconnecter</a>
+        </nav>
+    </div>
+    <h1>Créer un ticket</h1>
+    <form action="" method="POST">
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <input type="submit" class="button">
+        </form>
+</body>
+{% endblock %}
