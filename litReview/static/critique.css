@@ -1,0 +1,17 @@
+h1 {
+    text-align: center;
+}
+form {
+    width: 50%;
+    margin: auto;
+}
+input {
+    float: right;
+}
+label {
+    margin-top: 20px;
+}
+nav {
+    display: flex;
+    justify-content: right;
+}
