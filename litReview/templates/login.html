@@ -13,10 +13,10 @@
 			<button class="button_register"><a href="{% url 'register' %}">S'inscrire</a></button>
 		</div>
 
-		<form action="" method="POST">{% csrf_token %}
+		<form action="" method="POST">
+			{% csrf_token %}
 			<h2 id="titre_connexion">Connectez-vous</h2>
-			<input type="text" class="field_login" placeholder="Nom d'utilisateur" name="username">
-			<input type="password" class="field_login" placeholder="Mot de passe" name="pwd">
+			{{ form }}
 			<input type="submit" class="input_login field_login" value="Se connecter">
 		</form>
 	</section>
