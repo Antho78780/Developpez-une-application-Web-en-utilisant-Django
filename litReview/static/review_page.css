@@ -11,7 +11,15 @@ input {
 label {
     margin-top: 20px;
 }
-nav {
+#nav {
     display: flex;
     justify-content: right;
+}
+#titre_center {
+    margin-right: 29%;
+}
+.margin_nav {
+    margin: 10px;
+    text-decoration: none;
+    color: black;
 }

@@ -5,7 +5,7 @@
     margin-left: 25px;
 }
 section {
-    margin-top: 5%;
+    margin-top: 10%;
     display: flex;
     justify-content: space-evenly;
 }
@@ -38,4 +38,7 @@ form {
 }
 .button_register {
     margin-left: 35%;
+}
+form label {
+    display: none;
 }

@@ -1,12 +1,10 @@
 h1 {
     text-align: center;
 }
-nav {
-    display: flex;
-    justify-content: right;
-}
 .margin_nav {
     margin: 10px;
+    text-decoration: none;
+    color: black;
 }
 form {
     display: block;
@@ -20,6 +18,10 @@ form {
 .input_send {
    float: right;
 }
-.titre_center {
-    text-align: center;
+#titre_center {
+    margin-right: 29%;
+}
+#nav {
+    display: flex;
+    justify-content: right;
 }
