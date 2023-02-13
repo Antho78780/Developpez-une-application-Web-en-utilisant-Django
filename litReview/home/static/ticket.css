@@ -1,0 +1,33 @@
+h1 {
+    text-align: center;
+}
+.margin_nav {
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+}
+form {
+    display: block;
+    width: 40%;
+    margin: auto;
+}
+#id_titre{
+    width: 800px;
+}
+#id_description {
+    width: 800px;
+    height: 200px;
+}
+.form-group {
+    margin-top: 20px;
+}
+.input_send {
+   float: right;
+}
+#titre_center {
+    margin-right: 29%;
+}
+#nav {
+    display: flex;
+    justify-content: right;
+}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'home.css' %}"/>
+{% endblock head %}
+
+{% block content %}
+    <div id="nav">
+        <p id="titre_center">LITReview</p>
+        <nav>
+            <a class="margin_nav">Flux</a>
+            <a class="margin_nav">Posts</a>
+            <a class="margin_nav">Abonnements</a>
+            <a href="{%  url 'logout' %}" class="margin_nav">Se déconnecter</a>
+        </nav>
+    </div>
+    <div id="block_button">
+        <button><a href="{% url 'ticket' %}" class="button">Demander une critique</a></button>
+        <button><a href="" class="button">Créer une critique</a></button>
+    </div>
+{% endblock %}
