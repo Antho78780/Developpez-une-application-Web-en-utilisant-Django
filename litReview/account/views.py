@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import register_forms
+from django.contrib.auth import authenticate
 
 class register_user:
 	def register(request):
@@ -24,13 +25,11 @@ class register_user:
 # 			if form.is_valid():
 # 				user = authenticate(username=form.cleaned_data["username"], password=form.cleaned_data["password"])
 # 				if user is not None:
-# 					login(request, user)
-# 					message = f'Bienvenue, {user.username}! Vous êtes connecté.'
-					
+# 					message = f'Bienvenue, {user}! Vous êtes connecté.'
 # 				else:
 # 					print("compte non trouvé")
 # 					message = "Identifiants invalides"
-# 		return render(request, "login_page.html", context={"form": Login_forms, "message": message})
+# 		return render(request, "login.html", context={"form": Login_forms, "message": message})
 
 		
 			

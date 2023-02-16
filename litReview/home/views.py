@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import TicketForm
+from .models import Ticket
 from django.contrib.auth.decorators import login_required
 
 # def create_review(request):
@@ -14,6 +15,12 @@ def home_page(request):
 
 @login_required(login_url="login")
 def create_ticket(request):
+    form = TicketForm()
     if request.method == "POST":
-        print("Contenu envoyé")
-    return render(request, "ticket.html", context={"form": TicketForm})
+        user = Ticket(title=request.POST["title"], description=request.POST["description"], image=request.POST["image"],user=request.user)
+        user.save()
+        print("Nom du compte :", request.user)
+        
+    return render(request, "ticket.html", context={"form": form})
+
+

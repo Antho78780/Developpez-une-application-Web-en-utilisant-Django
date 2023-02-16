@@ -1,13 +1,16 @@
-from django import forms
+from django.forms import ModelForm
 
-class TicketForm(forms.Form):
-    titre = forms.CharField(label="Titre")
-    description = forms.CharField(widget=forms.Textarea(attrs={'rows':0, 'cols':0}))
-    image = forms.ImageField()
+from . import models
 
-class ReviewForm(forms.Form):
-    titre = forms.CharField(label="Titre")
-    commentaire = forms.CharField(label="Commentaire", max_length=1000)
+class TicketForm(ModelForm):
+    class Meta:
+        model = models.Ticket
+        fields = ["title", "description", "image"]
 
-class FollowForm(forms.Form):
-   username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
+
+# # class ReviewForm(ModelForm):
+# #     titre = forms.CharField(label="Titre")
+# #     commentaire = forms.CharField(label="Commentaire", max_length=1000)
+
+# # class FollowForm(ModelForm):
+# #     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
