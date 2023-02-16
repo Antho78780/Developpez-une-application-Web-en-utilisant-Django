@@ -12,5 +12,3 @@ class TicketForm(ModelForm):
 # #     titre = forms.CharField(label="Titre")
 # #     commentaire = forms.CharField(label="Commentaire", max_length=1000)
 
-# # class FollowForm(ModelForm):
-# #     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))

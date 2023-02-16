@@ -10,9 +10,9 @@ class register_forms(UserCreationForm):
         model = User
         fields = ["username", "password1", "password2"]
 
-# class Login_forms(forms.Form):
-#     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
-#     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': "Mot de passe"}))
+class Login_forms(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': "Mot de passe"}))
 
 
 

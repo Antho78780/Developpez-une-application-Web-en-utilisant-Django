@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .forms import register_forms
-from django.contrib.auth import authenticate
+from .forms import register_forms, Login_forms
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
 
 class register_user:
 	def register(request):
@@ -17,20 +18,26 @@ class register_user:
 		return render(request, "register.html", context={"form": register_forms, "message": message})
 
 
-# class Login_users:
-# 	def login(request):
-# 		message = ""
-# 		if request.method == "POST":
-# 			form = Login_forms(request.POST)
-# 			if form.is_valid():
-# 				user = authenticate(username=form.cleaned_data["username"], password=form.cleaned_data["password"])
-# 				if user is not None:
-# 					message = f'Bienvenue, {user}! Vous êtes connecté.'
-# 				else:
-# 					print("compte non trouvé")
-# 					message = "Identifiants invalides"
-# 		return render(request, "login.html", context={"form": Login_forms, "message": message})
-
+class Login_users:
+	def login_user(request):
+		message = ""
+		if request.method == "POST":
+			form = Login_forms(request.POST)
+			if form.is_valid():
+				user = authenticate(username=form.cleaned_data["username"], password=form.cleaned_data["password"])
+				if user is not None:
+					login(request, user)
+					return redirect("home")
+				else:
+					message = "Identifiants invalides"
+		if request.user.is_anonymous:
+			return render(request, "login.html", context={"form": Login_forms, "message": message})
+		else:
+			return redirect("home")
+	
+	def logout_user(request):
+		logout(request)
+		return redirect("login")
 		
 			
 

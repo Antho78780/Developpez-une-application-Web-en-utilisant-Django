@@ -19,14 +19,3 @@ class Review(models.Model):
     body = models.CharField(max_length=8192, blank=True, verbose_name='Title')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
-
-
-class UserFollows(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
-    followed_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed_by')
-
-    class Meta:
-        unique_together = ('user', 'followed_user', )
-    
-    def __str__(self) -> str:
-        return f"{self.user} - {self.followed_user}"
