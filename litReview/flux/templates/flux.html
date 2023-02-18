@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'home.css' %}"/>
+{% endblock head %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">LitReview</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{% url 'flux' %}">Flux</a>
+            <a class="nav-item nav-link" href="#">Posts</a>
+            <a class="nav-item nav-link" href="{% url 'subscription' %}">Abonnements</a>
+            <a class="nav-item nav-link" href="{% url 'logout' %}">Se deconnecter</a>
+            </div>
+        </div>
+    </nav>
+    <div id="block_button">
+        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'ticket' %}">Demander une critique</a></button>
+        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'review' %}">Créer une critique</a></button>
+    </div>
+    
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <p>
+                            <p class="float-left"><strong>Vous avez publié une critique</strong></p>
+                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                       </p>
+                       <div class="clearfix"></div>
+                        <p>Véritablement révolutionnaire</p>
+                    </div>
+                </div>
+                    <div class="card card-inner">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <p><strong>Ticket - Maniruzzaman Akash</strong></p>
+                                    <p>The Origin of Species - Charles Darwin</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    {% for t in ticket %}
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+                <div class="card">
+                    <div class="row d-flex">
+                        <div class="d-flex flex-column">
+                            <h3 class="mt-2 mb-0">{{t.user}} a demandé une critique</h3>
+                        </div>
+                    </div>
+                    <div class="row text-left">
+                        <h4 class="blue-text mt-3">{{t.title}}</h4>
+                    </div>
+                    <div class="row text-left">
+                        <p class="blue-text mt-3">{{t.description}}</p>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn_critique">Créer une critique</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

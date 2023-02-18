@@ -1,0 +1,26 @@
+#block_button {
+    display: flex;
+    justify-content: center;
+}
+button a {
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+}
+.btn {
+    margin: 20px;
+}
+.btn_critique {
+    width: 20%;
+    margin-left: auto;
+}
+.blue-text {
+    text-align: left;
+}
+.collapse {
+    justify-content: right;
+    margin-right: 20px;
+}
+h3 {
+    text-align: left;
+}

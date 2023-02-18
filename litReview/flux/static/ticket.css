@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+}
+#id_description {
+    width: 1000px;
+}
+#id_title {
+    width: 1000px;
+}
+.form-group {
+    margin-top: 20px;
+}
+.btn-secondary {
+   float: right;
+}
+#titre_center {
+    margin-right: 29%;
+}
+form {
+    display: block;
+    width: 50%;
+    margin: auto;
+}
+.collapse {
+    justify-content: right;
+    margin-right: 20px;
+}
