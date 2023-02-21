@@ -21,4 +21,5 @@ urlpatterns = [
     path("auth/", include("account.urls")),
     path("", include("flux.urls")),
     path("", include("subscription.urls")),
+    path("", include("posts.urls"))
 ]
