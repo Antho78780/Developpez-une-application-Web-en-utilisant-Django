@@ -36,9 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'account',
     'flux',
-    "subscription"
+    "subscription",
+    "posts"
 ]
 
 MIDDLEWARE = [
@@ -125,5 +127,6 @@ STATICFILES_DIRS = []
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
+LOGIN_URL = "login"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = "/media/"
