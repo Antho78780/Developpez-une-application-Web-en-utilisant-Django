@@ -12,6 +12,7 @@ h1 {
 }
 .btn-secondary {
    float: right;
+   width: 15%;
 }
 #titre_center {
     margin-right: 29%;

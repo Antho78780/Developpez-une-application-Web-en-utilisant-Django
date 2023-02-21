@@ -9,4 +9,6 @@ class TicketForm(ModelForm):
 
 
 class ReviewForm(ModelForm):
-    pass
+    class Meta:
+        model = models.Review
+        fields = ["headline","rating", "body"]
