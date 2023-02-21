@@ -25,7 +25,7 @@ def login_user(request):
 			user = authenticate(username=form.cleaned_data["username"], password=form.cleaned_data["password"])
 			if user is not None:
 				login(request, user)
-				return redirect("home")
+				return redirect("flux")
 			else:
 				message = "L'identifiant ou le mot de passe que vous avez saisi(e) n’est pas associé(e) à un compte. Trouvez votre compte et connectez-vous."
 	if request.user.is_anonymous:
