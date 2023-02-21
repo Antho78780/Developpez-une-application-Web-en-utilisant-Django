@@ -6,8 +6,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("flux/", views.flux, name="flux"),
-    path("flux/create_ticket/", views.create_ticket, name="ticket"),
-    path("flux/create_review/", views.create_review, name="review")
+    path("flux/ticket/", views.create_ticket, name="ticket"),
+    path("flux/review/", views.create_review_and_ticket, name="review"),
+    path("flux/review_response/", views.create_review_response, name="review_response")
 ]
 
 if settings.DEBUG:
