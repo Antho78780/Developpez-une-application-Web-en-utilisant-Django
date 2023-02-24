@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head %}
-	<link rel="stylesheet" href="{% static 'home.css' %}"/>
+	<link rel="stylesheet" href="{% static 'flux.css' %}"/>
 {% endblock head %}
 
 {% block content %}
@@ -10,16 +10,16 @@
         <a class="navbar-brand" href="#">LitReview</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="{% url 'flux' %}">Flux</a>
-            <a class="nav-item nav-link" href="{% url 'posts' %}">Posts</a>
-            <a class="nav-item nav-link" href="{% url 'subscription' %}">Abonnements</a>
-            <a class="nav-item nav-link" href="{% url 'logout' %}">Se deconnecter</a>
+                <a class="nav-item nav-link active" href="{% url 'flux:flux' %}">Flux</a>
+                <a class="nav-item nav-link" href="{% url 'flux:posts' %}">Posts</a>
+                <a class="nav-item nav-link" href="{% url 'flux:subscription' %}">Abonnements</a>
+                <a class="nav-item nav-link" href="{% url 'account:logout' %}">Se deconnecter</a>
             </div>
         </div>
     </nav>
     <div id="block_button">
-        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'ticket' %}">Demander une critique</a></button>
-        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'review' %}">Créer une critique</a></button>
+        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'flux:ticket' %}">Demander une critique</a></button>
+        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'flux:review' %}">Créer une critique</a></button>
     </div>
     
     {% for t in ticket %}
@@ -45,7 +45,7 @@
                     {% for r in review %}
 
                     {% if t.user != r.user %}
-                        <button type="button" class="btn btn-outline-secondary btn_critique"><a href="{% url 'review_response' %}">Créer une critique</a></button>
+                        <button type="button" class="btn btn-outline-secondary btn_critique"><a href="{% url 'flux:review_response' %}">Créer une critique</a></button>
                     {% else %}
 
                     {% endif %}

@@ -12,11 +12,10 @@
 			{% csrf_token %}
 			<h2>Inscrivez-vous</h2>
 			<div>
-				{{ form }}
+				{{ form.as_p }}
 			</div>
-			<p>{{ message }}</p>
 			<div id="block_button_register">
-				<button><a href="{% url 'login' %}">Retourner</a></button>
+				<button><a href="{% url 'account:login' %}">Retourner</a></button>
 				<input type="submit" value="S'inscrire" class="input_register">
 			</div>
 		</form>

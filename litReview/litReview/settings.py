@@ -39,8 +39,6 @@ INSTALLED_APPS = [
 
     'account',
     'flux',
-    "subscription",
-    "posts"
 ]
 
 MIDDLEWARE = [
@@ -128,5 +126,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
 LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "flux:flux"
+LOGOUT_REDIRECT_URL = "account:login"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = "/media/"

@@ -53,6 +53,20 @@ def create_review_response(request):
     return render(request, "review_response.html", context={"formReview": formReview})
 
 
+@login_required
+def posts(request):
+    review = Review.objects.all()
+    ticket = Ticket.Review.objects.all()
+    return render(request, "posts.html", context={"review": review, "ticket": ticket})
+
+@login_required
+def subscription(request):
+    if request.method == "POST":
+        print("recherhce du nom d'utilisateur")
+    return render(request, "subscription.html")
+
+
+
 
 
 

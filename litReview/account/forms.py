@@ -1,8 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User
 
-class register_forms(UserCreationForm):
+class RegisterForms(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': "Mot de passe"}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': "Confirmer mot de passe"}))
@@ -10,7 +10,7 @@ class register_forms(UserCreationForm):
         model = User
         fields = ["username", "password1", "password2"]
 
-class Login_forms(forms.Form):
+class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': "Nom d'utilisateur"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': "Mot de passe"}))
 
