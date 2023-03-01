@@ -2,6 +2,27 @@
     justify-content: right;
     margin-right: 20px;
 }
-h3, .blue-text {
+H4 {
     text-align: left;
+}
+button a {
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+}
+button {
+    float: right;
+}
+.btn {
+    margin: 10px;
+}
+.block_card {
+    width: 70%;
+    margin: auto;
+}
+h1 {
+    text-align: center;
+}
+.card {
+    margin-top: 20px;
 }

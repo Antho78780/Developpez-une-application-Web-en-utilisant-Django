@@ -12,7 +12,7 @@
 			{% csrf_token %}
 			<h2>Inscrivez-vous</h2>
 			<div>
-				{{ form.as_p }}
+				{{ form }}
 			</div>
 			<div id="block_button_register">
 				<button><a href="{% url 'account:login' %}">Retourner</a></button>

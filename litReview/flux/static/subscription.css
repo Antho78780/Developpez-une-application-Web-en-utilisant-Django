@@ -8,4 +8,32 @@
     padding-bottom: 50px;
     padding-top: 50px;
 }
-
+.followed, .followed_by {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+.test {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+.test2 {
+    text-align: left;
+    border: 1px solid black;
+}
+button {
+    border: 1px solid black;
+}
+label {
+    display: none !important;
+}
+#id_search_user {
+    width: 700px;
+}
+button {
+    height: 100%;
+}
+#id_username {
+    width: 90%;
+}

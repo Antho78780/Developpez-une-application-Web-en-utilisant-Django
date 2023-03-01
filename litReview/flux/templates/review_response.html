@@ -19,7 +19,26 @@
     <h1>Créer une critique</h1>
     <form method="post", enctype="multipart/form-data">
         {% csrf_token %}
-        {{ formReview.as_p }}
-        <button type="submit" class="btn btn-secondary">Envoyer</button>
+        
+        <div class="container">
+            <p><strong>Vous êtes en train de poster en réponse à</strong></p>
+            <div class="card block_card">
+                <span>{{ticket.time_created}}</span>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p><strong>{{ticket.user}} a demandé une critique</strong></p>
+                            <p>{{ticket.title}}</p>
+                            <p>{{ticket.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="test">
+            <p>Critique</p>
+            {{ formReview.as_p }}
+            <button type="submit" class="btn btn-secondary">Envoyer</button>
+        </div>
     </form>
 {% endblock %}

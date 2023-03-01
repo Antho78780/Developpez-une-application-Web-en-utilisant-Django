@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
             <a class="nav-item nav-link active" href="{% url 'flux:flux' %}">Flux</a>
-            <a class="nav-item nav-link" href="#">Posts</a>
+            <a class="nav-item nav-link" href="{% url 'flux:posts' %}">Posts</a>
             <a class="nav-item nav-link" href="{% url 'flux:subscription' %}">Abonnements</a>
             <a class="nav-item nav-link" href="{% url 'account:logout' %}">Se deconnecter</a>
             </div>
@@ -20,14 +20,42 @@
             <div class="card" id="card">
                 <div class="text-center">
                     <span class="d-block mt-3">Suivre d'autres utilisateurs</span>
-                    <div class="mx-5">
-                       <div class="input-group mb-3 mt-4">
-                          <input type="text" class="form-control" placeholder="Nom d'utilisateur" aria-label="Recipient's username" aria-describedby="button-addon2">
-                          <button class="btn btn-success border-rad" type="submit" id="button-addon2">Envoyer</button>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mx-5">
+                        <div class="input-group mb-3 mt-4">
+                            {{ form }}
+                            <input class="btn btn-success border-rad" type="submit" id="button-addon2">
+                            </div>
                         </div>
-                    </div>  
+                    </form>  
                 </div>  
             </div> 
         </div>
+    </div>
+    <div class="followed">
+        <h4>Utilisateurs suivis</h4>
+        {% for u in userFollows %}
+        <div class="test">
+            {% if request.user == u.followed_user %}
+                <p>{{u.user}}</p>
+                <form method="post" action="{% url 'flux:delete_subscription' %}">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{u.id}}" name="user_id">
+                    <button type="submit">Désabonner</button>
+                </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="followed_by">
+        <h4>Utilisateurs qui me suivent</h4>
+        {% for u in userFollows %}
+        <div class="test2">
+            {% if request.user == u.user %}
+                <p>{{u.followed_user}}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
     </div>
 {% endblock %}

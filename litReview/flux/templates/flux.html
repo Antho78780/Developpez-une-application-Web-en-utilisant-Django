@@ -21,58 +21,49 @@
         <button type="button" class="btn btn-outline-secondary"><a href="{% url 'flux:ticket' %}">Demander une critique</a></button>
         <button type="button" class="btn btn-outline-secondary"><a href="{% url 'flux:review' %}">Créer une critique</a></button>
     </div>
-    
+
+    <!----Ticket--->
     {% for t in ticket %}
-    <div class="container-fluid px-1 py-5 mx-auto ">
-        <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
-                <div class="card bg-light">
-                    <div class="row d-flex">
-                        <div class="d-flex flex-column">
-                            {% if t.user == request.user %}
-                                <h3 class="mt-2 mb-0">Vous avez demandé une critique</h3>
-                            {% else %}
-                                <h3 class="mt-2 mb-0">{{t.user}} a demandé une critique</h3>
-                            {% endif %}
-                        </div>
+    <div class="container">
+        <div class="card block_card">
+            <span>{{t.time_created}}</span>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        {% if t.user != request.user %}
+                            <p><strong>{{t.user}} a demandé une critique</strong></p>
+                        {% else %}
+                            <p><strong>Vous avez demandé une critique</strong></p>
+                        {% endif %}
+                        <h5>{{t.title}}</h5>
+                        <p>{{t.description}}</p>
                     </div>
-                    <div class="row text-left">
-                        <h4 class="blue-text mt-3">{{t.title}}</h4>
-                    </div>
-                    <div class="row text-left">
-                        <p class="blue-text mt-3">{{t.description}}</p>
-                    </div>
-                    {% for r in review %}
-
-                    {% if t.user != r.user %}
-                        <button type="button" class="btn btn-outline-secondary btn_critique"><a href="{% url 'flux:review_response' %}">Créer une critique</a></button>
-                    {% else %}
-
-                    {% endif %}
-                    {% endfor %}
                 </div>
+                {% if t.user != request.user %}
+                    <button type="button" class="btn btn-outline-secondary btn_critique"><a href="{% url 'flux:review_response' t.id  %}">Créer une critique</a></button>
+                {% else %}
+                {% endif %}
             </div>
         </div>
     </div>
     {% endfor %}
+   
+    <!--Critique----->
     {% for r in review %}
     <div class="container">
-        <div class="card">
+        <div class="card block_card">
+            <span>{{r.time_created}}</span>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-10">
                         <p>
-                            {% if r.user == request.user%}
+                            {% if r.user == request.user %}
                                 <strong>Vous avez publié une critique</strong>
                             {% else %}
-                            <strong>{{r.user}} à publié une critique</strong>
+                                <strong>{{r.user}} à publié une critique</strong>
                             {% endif %}
-                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
                        </p>
-                        <p>{{r.headline}} - Note: {{r.rating}}/5</p>
+                        <h4>{{r.headline}} - Note: {{r.rating}}/5</h4>
                         <p>{{r.body}}</p>
                     </div>
                 </div>
@@ -85,6 +76,7 @@
                                     {% else %}
                                     <p><strong>Ticket - {{r.ticket.user}}</strong></p>
                                     {% endif %}
+                                    <p>{{r.ticket.title}}</p>
                                     <p>{{r.ticket.description}}</p>
                                 </div>
                             </div>
@@ -94,4 +86,5 @@
         </div>
     </div>
     {% endfor %}
+
 {% endblock %}

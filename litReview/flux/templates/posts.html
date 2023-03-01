@@ -16,23 +16,17 @@
         </div>
     </div>
 </nav>
-
+<h1>Vos posts</h1>
 {% for r in review %}
 {% if r.user == request.user %}
+
     <div class="container">
-        <div class="card">
+        <div class="card block_card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-10">
-                        <p>
-                            <strong>Vous avez publié une critique</strong>
-                        
-                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                    </p>
-                        <p>{{r.headline}} - Note: {{r.rating}} / 5</p>
+                        <p><strong>Vous avez publié une critique</strong></p>
+                        <h4>{{r.headline}} - Note: {{r.rating}} / 5</h4>
                         <p>{{r.body}}</p>
                     </div>
                 </div>
@@ -45,37 +39,44 @@
                                     {% else %}
                                     <p><strong>Ticket - {{r.ticket.user}}</strong></p>
                                     {% endif %}
+                                    <p>{{r.ticket.title}}</p>
                                     <p>{{r.ticket.description}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-            </div>
-        </div>
-    </div>
-{% else %}
-    <p>Aucun posts publiés</p>
-{% endif %}
-{% if r.ticket.user == request.user %}
-    <div class="container-fluid px-1 py-5 mx-auto ">
-        <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
-                <div class="card bg-light">
-                    <div class="row d-flex">
-                        <div class="d-flex flex-column">
-                            <h3 class="mt-2 mb-0">Vous avez publié un ticket</h3>
-                        </div>
-                    </div>
-                    <div class="row text-left">
-                        <h4 class="blue-text mt-3">{{r.ticket.title}}</h4>
-                    </div>
-                    <div class="row text-left">
-                        <p class="blue-text mt-3">{{r.ticket.description}}</p>
-                    </div>
+                <div>
+                    <button type="button" class="btn btn-outline-secondary btn_critique"><a href="{% url 'flux:delete-review' r.id %}">Supprimer</a></button>
+                    <button type="button" class="btn btn-outline-secondary btn_critique"><a href="">Modifier</a></button>
                 </div>
             </div>
         </div>
     </div>
+{% else %}
 {% endif %}
 {% endfor %}
+
+{% for t in ticket %}
+{% if t.user == request.user %}
+    <div class="container">
+        <div class="card block_card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <p><strong>Vous avez Publié un ticket</strong></p>
+                        <h5>{{t.title}}</h5>
+                        <p>{{t.description}}</p>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-outline-secondary btn_critique"><a href="{% url 'flux:delete-ticket' t.id %}">Supprimer</a></button>
+                    <button type="button" class="btn btn-outline-secondary btn_critique"><a href="">Modifier</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+{% endif %}
+{% endfor %}
+
 {% endblock %}
