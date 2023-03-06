@@ -16,7 +16,7 @@ class ReviewForm(ModelForm):
         fields = ["headline","rating", "body"]
 
 class FollowingForm(forms.Form):
-    username = forms.CharField(max_length=255)
+    username = forms.CharField(max_length=255, widget=forms.TextInput(attrs={"placeholder": "Nom d'utilisateur"}))
     
     def clean(self):
         clean_data = super().clean()
