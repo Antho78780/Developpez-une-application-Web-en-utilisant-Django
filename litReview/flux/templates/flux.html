@@ -23,68 +23,77 @@
     </div>
 
     <!----Ticket--->
+    {% for u in userFollows %}
     {% for t in ticket %}
-    <div class="container">
-        <div class="card block_card">
-            <span>{{t.time_created}}</span>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-10">
-                        {% if t.user != request.user %}
-                            <p><strong>{{t.user}} a demandé une critique</strong></p>
-                        {% else %}
-                            <p><strong>Vous avez demandé une critique</strong></p>
-                        {% endif %}
-                        <h5>{{t.title}}</h5>
-                        <p>{{t.description}}</p>
+    {% if u.user == t.user %}
+        <div class="container">
+            <div class="card block_card">
+                <span>{{t.time_created}}</span>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            {% if t.user == request.user %}
+                                <p><strong>Vous avez demandé une critique</strong></p>
+                                <h5>{{t.title}}</h5>
+                                <p>{{t.description}}</p>
+                            {% else %}
+                                <p><strong>{{t.user}} a demandé une critique</strong></p>
+                                <h5>{{t.title}}</h5>
+                                <p>{{t.description}}</p>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-                {% if t.user != request.user %}
+                    {% if request.user != t.user %}
                     <button type="button" class="btn btn-outline-secondary btn_critique"><a href="{% url 'flux:review_response' t.id  %}">Créer une critique</a></button>
-                {% else %}
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
+    {% endfor %}
     {% endfor %}
    
     <!--Critique----->
+    {% for u in userFollows %}
     {% for r in review %}
-    <div class="container">
-        <div class="card block_card">
-            <span>{{r.time_created}}</span>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-10">
-                        <p>
-                            {% if r.user == request.user %}
-                                <strong>Vous avez publié une critique</strong>
-                            {% else %}
-                                <strong>{{r.user}} à publié une critique</strong>
-                            {% endif %}
-                       </p>
-                        <h4>{{r.headline}} - Note: {{r.rating}}/5</h4>
-                        <p>{{r.body}}</p>
+    {% if u.user == r.user %}
+        <div class="container">
+            <div class="card block_card">
+                <span>{{r.time_created}}</span>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p>
+                                {% if r.user == request.user %}
+                                    <strong>Vous avez publié une critique</strong>
+                                {% else %}
+                                    <strong>{{r.user}} à publié une critique</strong>
+                                {% endif %}
+                        </p>
+                            <h4>{{r.headline}} - Note: {{r.rating}}/5</h4>
+                            <p>{{r.body}}</p>
+                        </div>
                     </div>
-                </div>
-                    <div class="card card-inner">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    {% if r.ticket.user == request.user %}
-                                        <p><strong>Ticket - Vous</strong></p>
-                                    {% else %}
-                                    <p><strong>Ticket - {{r.ticket.user}}</strong></p>
-                                    {% endif %}
-                                    <p>{{r.ticket.title}}</p>
-                                    <p>{{r.ticket.description}}</p>
+                        <div class="card card-inner">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        {% if r.ticket.user == request.user %}
+                                            <p><strong>Ticket - Vous</strong></p>
+                                        {% else %}
+                                        <p><strong>Ticket - {{r.ticket.user}}</strong></p>
+                                        {% endif %}
+                                        <p>{{r.ticket.title}}</p>
+                                        <p>{{r.ticket.description}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
+    {% endfor %}
     {% endfor %}
 
 {% endblock %}
