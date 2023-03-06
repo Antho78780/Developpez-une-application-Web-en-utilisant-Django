@@ -24,19 +24,15 @@ label {
     margin-top: 50px;
     width: 15%;
 }
-.test, .container {
+.block_review {
     border: 1px solid black;
+    margin: 20px;
     padding: 20px;
 }
-.test {
-    margin-top: 50px;
-}
-#id_body, #id_headline{
+#id_headline, #id_body {
     width: 100%;
 }
-#id_body {
-    height: 200px;
-}
+
 span {
     margin-left: auto;
 }

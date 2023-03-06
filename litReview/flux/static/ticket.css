@@ -1,11 +1,8 @@
 h1 {
     text-align: center;
 }
-#id_description {
-    width: 1000px;
-}
-#id_title {
-    width: 1000px;
+#id_description, #id_title {
+    width: 100%;
 }
 .form-group {
     margin-top: 20px;

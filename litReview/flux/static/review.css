@@ -14,7 +14,7 @@ label {
     margin-right: 20px;
 }
 #id_headline, #id_body, #id_title, #id_description {
-    width: 1000px;
+    width: 100%;
 }
 #id_body {
     height: 300px;
@@ -23,4 +23,9 @@ label {
     float: right;
     margin-top: 50px;
     width: 15%;
+}
+.block_review {
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px;
 }
