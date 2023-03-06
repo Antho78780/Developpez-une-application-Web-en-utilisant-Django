@@ -3,7 +3,6 @@ from .forms import TicketForm, ReviewForm, FollowingForm, UnsubscribeForm
 from .models import Ticket, Review, UserFollows
 from django.contrib.auth.decorators import login_required
 from account.models import User
-from django.views import generic
 from django.db import IntegrityError
 
 
@@ -11,12 +10,14 @@ from django.db import IntegrityError
 def flux(request):
     ticket = Ticket.objects.all()
     review = Review.objects.all()
-    return render(request, "flux.html", context={"ticket": ticket, "review": review})
+    userFollows = UserFollows.objects.all()
+    return render(request, "flux.html", context={"ticket": ticket, "review": review, "userFollows": userFollows})
 
 
 @login_required
 def create_ticket(request):
     form = TicketForm()
+   
     if request.method == "POST":
         form = TicketForm(request.POST, request.FILES)
         if form.is_valid():
@@ -24,6 +25,17 @@ def create_ticket(request):
             form_save.user = request.user
             form_save.save()
             return redirect("flux:flux")
+
+    return render(request, "ticket.html", context={"form": form})
+
+def update_ticket(request, ticket_id):
+    ticket = Ticket.objects.get(pk=ticket_id, user=request.user)
+    form = TicketForm()
+    if request.method == "POST":
+        ticket.title = request.POST["title"]
+        ticket.description = request.POST["description"]
+        ticket.save()
+        return redirect("flux:flux")
     return render(request, "ticket.html", context={"form": form})
 
 @login_required
@@ -49,8 +61,17 @@ def create_review_and_ticket(request):
 @login_required
 def create_review_response(request, ticket_id):
     ticket = Ticket.objects.get(pk=ticket_id)
-    print(ticket.user)
     review = ReviewForm()
+    if request.method == "POST":
+        review = ReviewForm(request.POST)
+        if review.is_valid():
+            review = review.save(commit=False)
+            review.user = request.user
+            review.ticket = ticket
+            review.save()
+            return redirect("flux:flux")
+
+
     return render(request, "review_response.html", context={"formReview": review, "ticket": ticket})
 
 
@@ -64,14 +85,6 @@ def deleteReview(request, review_id):
     review = Review.objects.get(pk=review_id)
     review.delete()
     return redirect("flux:posts")
-
-@login_required
-def updateTicket(request):
-    pass
-
-@login_required
-def updateReview(request):
-    pass
 
 @login_required
 def subscription(request):
