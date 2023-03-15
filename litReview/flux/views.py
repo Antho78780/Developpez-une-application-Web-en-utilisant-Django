@@ -4,22 +4,24 @@ from .models import Ticket, Review, UserFollows
 from django.contrib.auth.decorators import login_required
 from account.models import User
 from django.db import IntegrityError
+from django.db.models import Q
+
 
 
 @login_required
 def flux(request):
-    ticket = Ticket.objects.all()
-    review = Review.objects.all()
-    userFollows = UserFollows.objects.all()
-    return render(request, "flux.html", context={"ticket": ticket, "review": review, "userFollows": userFollows})
+    ticket = Ticket.objects.filter(Q(user=request.user) | Q(user__in=request.user.followed.all()))
+
+    return render(request, "flux.html", context={"ticket": ticket})
 
 
 @login_required
-def create_ticket(request):
-    form = TicketForm()
-   
+def create_ticket(request, ticket_id=None):
+    if ticket_id is not None:
+        ticket = get_object_or_404(Ticket, pk=ticket_id, user=request.user)
+    
+    form = TicketForm(request.POST if request.method == "POST" else None, request.FILES if request.method == "POST" else None, instance=ticket if ticket_id is not None else None)
     if request.method == "POST":
-        form = TicketForm(request.POST, request.FILES)
         if form.is_valid():
             form_save = form.save(commit=False)
             form_save.user = request.user
@@ -28,15 +30,6 @@ def create_ticket(request):
 
     return render(request, "ticket.html", context={"form": form})
 
-def update_ticket(request, ticket_id):
-    ticket = Ticket.objects.get(pk=ticket_id, user=request.user)
-    form = TicketForm()
-    if request.method == "POST":
-        ticket.title = request.POST["title"]
-        ticket.description = request.POST["description"]
-        ticket.save()
-        return redirect("flux:flux")
-    return render(request, "ticket.html", context={"form": form})
 
 @login_required
 def create_review_and_ticket(request):
@@ -60,7 +53,7 @@ def create_review_and_ticket(request):
 
 @login_required
 def create_review_response(request, ticket_id):
-    ticket = Ticket.objects.get(pk=ticket_id)
+    ticket = get_object_or_404(Ticket, pk=ticket_id)
     review = ReviewForm()
     if request.method == "POST":
         review = ReviewForm(request.POST)
@@ -82,22 +75,21 @@ def deleteTicket(request, ticket_id):
 
 @login_required
 def deleteReview(request, review_id):
-    review = Review.objects.get(pk=review_id)
-    review.delete()
+    get_object_or_404(Review, pk=review_id, user=request.user).delete()
     return redirect("flux:posts")
 
 @login_required
 def subscription(request):
-    userFollow = UserFollows.objects.all()
+    userFollow =  UserFollows.objects.filter(Q(followed_user=request.user) | Q(user=request.user))
     form = FollowingForm(request.POST if request.method == "POST" else None)
     if request.method == "POST" and form.is_valid():
         try:
-            userFollows = UserFollows.objects.create(user=User.objects.get(username=form.cleaned_data["username"]), followed_user=request.user)
+            UserFollows.objects.create(user=User.objects.get(username=form.cleaned_data["username"]), followed_user=request.user)
             form = FollowingForm()
         except IntegrityError:
             form.add_error("username", "Vous suivez deja cette personne")
 
-    return render(request, "subscription.html", context={"userFollows": userFollow, "form": form})
+    return render(request, "subscription.html", context={"form": form, "userFollow": userFollow})
 
 @login_required
 def posts(request):

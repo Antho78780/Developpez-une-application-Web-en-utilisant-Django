@@ -31,7 +31,9 @@ h3 {
 }
 .card {
     margin-top: 20px;
+    background-color: #92a8d1 !important;
 }
+
 span {
     margin-left: auto;
 }

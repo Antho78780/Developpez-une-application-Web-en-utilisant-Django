@@ -21,11 +21,8 @@
         <button type="button" class="btn btn-outline-secondary"><a href="{% url 'flux:ticket' %}">Demander une critique</a></button>
         <button type="button" class="btn btn-outline-secondary"><a href="{% url 'flux:review' %}">Créer une critique</a></button>
     </div>
-
     <!----Ticket--->
-    {% for u in userFollows %}
     {% for t in ticket %}
-    {% if u.user == t.user %}
         <div class="container">
             <div class="card block_card">
                 <span>{{t.time_created}}</span>
@@ -44,19 +41,14 @@
                         </div>
                     </div>
                     {% if request.user != t.user %}
-                    <button type="button" class="btn btn-outline-secondary btn_critique"><a href="{% url 'flux:review_response' t.id  %}">Créer une critique</a></button>
+                    <button type="button" class="btn btn-success btn_critique"><a href="{% url 'flux:review_response' t.id  %}">Créer une critique</a></button>
                     {% endif %}
                 </div>
             </div>
         </div>
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-   
-    <!--Critique----->
-    {% for u in userFollows %}
-    {% for r in review %}
-    {% if u.user == r.user %}
+        
+        <!--Critique----->
+        {% for r in t.reviews.all %}
         <div class="container">
             <div class="card block_card">
                 <span>{{r.time_created}}</span>
@@ -92,8 +84,6 @@
                 </div>
             </div>
         </div>
-    {% endif %}
+        {% endfor %}
     {% endfor %}
-    {% endfor %}
-
 {% endblock %}

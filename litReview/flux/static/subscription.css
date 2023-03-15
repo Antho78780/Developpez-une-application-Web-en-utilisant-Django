@@ -3,22 +3,24 @@
     margin-right: 20px;
 }
 #card{
+    margin-top: 50px;
     padding: 20px;
     background-color: #eee;
     padding-bottom: 50px;
     padding-top: 50px;
+    border: none;
 }
 .followed, .followed_by {
     text-align: center;
     width: 50%;
     margin: auto;
 }
-.test {
+.block_followed {
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
 }
-.test2 {
+.block_followed_by {
     text-align: left;
     border: 1px solid black;
 }
@@ -36,4 +38,8 @@ button {
 }
 #id_username {
     width: 90%;
+    border: 1px solid grey;
+}
+h4 {
+    text-align: center;
 }

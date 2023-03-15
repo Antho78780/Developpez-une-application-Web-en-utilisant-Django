@@ -33,10 +33,72 @@
             </div> 
         </div>
     </div>
-    <div class="followed">
+    <h4>Utilisateurs Suivis</h4>
+    {% for u in userFollow %}
+    {% if request.user != u.user %}
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="tab-content p-0">
+                                <div class="tab-pane fade active show" id="profile-followers">
+                                    <div class="list-group">
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="flex-fill pl-3 pr-3">
+                                                <div>{{u.user}}</div>
+                                            </div>
+                                            <form method="post" action="{% url 'flux:delete_subscription' %}">
+                                                {% csrf_token %}
+                                                <input type="hidden" value="{{u.id}}" name="user_id">
+                                                <button type="submit" class="btn btn-danger">Désabonner</button>
+                                            </form>
+                                        </div>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <h4>Utilisateurs qui me suivent</h4>
+    {% for u in userFollow %}
+    {% if request.user != u.followed_user %}
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="tab-content p-0">
+                                <div class="tab-pane fade active show" id="profile-followers">
+                                    <div class="list-group">
+                                        <div class="list-group-item d-flex align-items-center">
+                                            <div class="flex-fill pl-3 pr-3">
+                                                <div>{{u.followed_user}}</div>
+                                            </div>
+                                            <form method="post" action="{% url 'flux:delete_subscription' %}">
+                                                {% csrf_token %}
+                                                <input type="hidden" value="{{u.id}}" name="user_id">
+                                                <button type="submit" class="btn btn-danger">Désabonner</button>
+                                            </form>
+                                        </div>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    <!-- <div class="followed">
         <h4>Utilisateurs suivis</h4>
         {% for u in userFollows %}
-        <div class="test">
+        <div class="block_followed">
             {% if request.user == u.followed_user %}
                 <p>{{u.user}}</p>
                 <form method="post" action="{% url 'flux:delete_subscription' %}">
@@ -51,11 +113,12 @@
     <div class="followed_by">
         <h4>Utilisateurs qui me suivent</h4>
         {% for u in userFollows %}
-        <div class="test2">
+        <div class="block_followed_by">
             {% if request.user == u.user %}
                 <p>{{u.followed_user}}</p>
             {% endif %}
         </div>
         {% endfor %}
-    </div>
+    </div> 
+    -->
 {% endblock %}
