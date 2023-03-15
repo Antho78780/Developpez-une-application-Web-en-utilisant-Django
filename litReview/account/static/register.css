@@ -13,11 +13,6 @@ section {
      width: 350px;
      height: 35px;
  }
- button, .input_register {
-     height: 30px;
-     width: 100px;
-     border: 1px solid black;
- }
  .field_register {
     margin-top: 10px;
  }
@@ -28,10 +23,6 @@ section {
     display: block;
     width: 20%;
     margin: auto;
-}
-button a {
-    text-decoration: none;
-    color: black;
 }
 form label {
     display: none;
