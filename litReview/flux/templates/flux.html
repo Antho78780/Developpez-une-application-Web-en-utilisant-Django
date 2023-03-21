@@ -18,8 +18,8 @@
         </div>
     </nav>
     <div id="block_button">
-        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'flux:ticket' %}">Demander une critique</a></button>
-        <button type="button" class="btn btn-outline-secondary"><a href="{% url 'flux:review' %}">Créer une critique</a></button>
+        <a href="{% url 'flux:ticket' %}"><button type="button" class="btn btn-outline-secondary">Demander une critique</button></a>
+        <a href="{% url 'flux:review' %}"><button type="button" class="btn btn-outline-secondary">Créer une critique</button></a>
     </div>
     <!----Ticket--->
     {% for t in ticket %}
@@ -31,17 +31,18 @@
                         <div class="col-md-10">
                             {% if t.user == request.user %}
                                 <p><strong>Vous avez demandé une critique</strong></p>
-                                <h5>{{t.title}}</h5>
-                                <p>{{t.description}}</p>
                             {% else %}
                                 <p><strong>{{t.user}} a demandé une critique</strong></p>
-                                <h5>{{t.title}}</h5>
-                                <p>{{t.description}}</p>
+                            {% endif %}
+                            <h5>{{t.title}}</h5>
+                            <p>{{t.description}}</p>
+                            {% if t.image %}
+                                <img src="{{t.image.url}}">
                             {% endif %}
                         </div>
                     </div>
                     {% if request.user != t.user %}
-                    <button type="button" class="btn btn-success btn_critique"><a href="{% url 'flux:review_response' t.id  %}">Créer une critique</a></button>
+                    <a href="{% url 'flux:review_response' t.id  %}"><button type="button" class="btn btn-success btn_critique">Créer une critique</button></a>
                     {% endif %}
                 </div>
             </div>
@@ -62,7 +63,13 @@
                                     <strong>{{r.user}} à publié une critique</strong>
                                 {% endif %}
                         </p>
-                            <h4>{{r.headline}} - Note: {{r.rating}}/5</h4>
+                            <h4>{{r.headline}} - 
+                                <i class="far fa-star {% if r.rating > 0 %} fas {% endif %}"></i>
+                                <i class="far fa-star {% if r.rating > 1 %} fas {% endif %}"></i>
+                                <i class="far fa-star {% if r.rating > 2 %} fas {% endif %}"></i>
+                                <i class="far fa-star {% if r.rating > 3 %} fas {% endif %}"></i>
+                                <i class="far fa-star {% if r.rating > 4 %} fas {% endif %}"></i>
+                            </h4>
                             <p>{{r.body}}</p>
                         </div>
                     </div>

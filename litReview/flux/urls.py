@@ -17,7 +17,3 @@ urlpatterns = [
     path("flux/posts/delete_ticket/<ticket_id>", views.deleteTicket, name="delete-ticket"),
     path("flux/posts/delete_review/<review_id>", views.deleteReview, name="delete-review")
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

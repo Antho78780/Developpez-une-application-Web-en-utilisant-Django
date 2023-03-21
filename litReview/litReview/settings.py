@@ -118,7 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [BASE_DIR / "static"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -129,4 +129,4 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "flux:flux"
 LOGOUT_REDIRECT_URL = "account:login"
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "/media/"
+MEDIA_ROOT = "media"

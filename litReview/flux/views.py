@@ -84,7 +84,7 @@ def subscription(request):
     form = FollowingForm(request.POST if request.method == "POST" else None)
     if request.method == "POST" and form.is_valid():
         try:
-            UserFollows.objects.create(user=User.objects.get(username=form.cleaned_data["username"]), followed_user=request.user)
+            UserFollows.objects.create(followed_user=User.objects.get(username=form.cleaned_data["username"]), user=request.user)
             form = FollowingForm()
         except IntegrityError:
             form.add_error("username", "Vous suivez deja cette personne")

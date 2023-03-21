@@ -37,3 +37,10 @@ h3 {
 span {
     margin-left: auto;
 }
+img {
+    width: 150px;
+    height: 200px;
+}
+i {
+    font-size: 1rem;
+}

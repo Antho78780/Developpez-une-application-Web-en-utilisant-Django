@@ -35,7 +35,7 @@
     </div>
     <h4>Utilisateurs Suivis</h4>
     {% for u in userFollow %}
-    {% if request.user != u.user %}
+    {% if user == u.user %}
     <div class="container">
         <div class="profile-container">
             <div class="profile-content">
@@ -46,7 +46,7 @@
                                     <div class="list-group">
                                         <div class="list-group-item d-flex align-items-center">
                                             <div class="flex-fill pl-3 pr-3">
-                                                <div>{{u.user}}</div>
+                                                <div>{{u.followed_user.username}}</div>
                                             </div>
                                             <form method="post" action="{% url 'flux:delete_subscription' %}">
                                                 {% csrf_token %}
@@ -66,7 +66,7 @@
     {% endfor %}
     <h4>Utilisateurs qui me suivent</h4>
     {% for u in userFollow %}
-    {% if request.user != u.followed_user %}
+    {% if request.user == u.followed_user %}
     <div class="container">
         <div class="profile-container">
             <div class="profile-content">
@@ -77,12 +77,11 @@
                                     <div class="list-group">
                                         <div class="list-group-item d-flex align-items-center">
                                             <div class="flex-fill pl-3 pr-3">
-                                                <div>{{u.followed_user}}</div>
+                                                <div>{{u.user.username}}</div>
                                             </div>
                                             <form method="post" action="{% url 'flux:delete_subscription' %}">
                                                 {% csrf_token %}
                                                 <input type="hidden" value="{{u.id}}" name="user_id">
-                                                <button type="submit" class="btn btn-danger">Désabonner</button>
                                             </form>
                                         </div>                                   
                                 </div>

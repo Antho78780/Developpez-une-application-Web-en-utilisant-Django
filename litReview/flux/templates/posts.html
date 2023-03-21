@@ -46,8 +46,8 @@
                         </div>
                     </div>
                 <div>
-                    <button type="button" class="btn btn-success btn_critique"><a href="{% url 'flux:delete-review' r.id %}">Supprimer</a></button>
-                    <button type="button" class="btn btn-success btn_critique"><a href="">Modifier</a></button>
+                    <a href="{% url 'flux:delete-review' r.id %}"><button type="button" class="btn btn-danger btn_critique">Supprimer</button></a>
+                    <a href=""><button type="button" class="btn btn-success btn_critique">Modifier</button></a>
                 </div>
             </div>
         </div>
@@ -69,8 +69,8 @@
                     </div>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-success btn_critique"><a href="{% url 'flux:delete-ticket' t.id %}">Supprimer</a></button>
-                    <button type="button" class="btn btn-success btn_critique"><a href="{% url 'flux:update-ticket' t.id %}">Modifier</a></button>
+                    <a href="{% url 'flux:delete-ticket' t.id %}"><button type="button" class="btn btn-danger btn_critique">Supprimer</button></a>
+                    <a href="{% url 'flux:update-ticket' t.id %}"><button type="button" class="btn btn-success btn_critique">Modifier</button></a>
                 </div>
             </div>
         </div>
