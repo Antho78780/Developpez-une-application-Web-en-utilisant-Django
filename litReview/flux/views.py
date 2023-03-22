@@ -67,6 +67,15 @@ def create_review_response(request, ticket_id):
 
     return render(request, "review_response.html", context={"formReview": review, "ticket": ticket})
 
+def update_review(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    form = ReviewForm(request.POST if request.method == "POST" else None, instance=review)
+    if request.method == "POST":
+        if form.is_valid():
+            form = form.save()
+            return redirect("flux:posts")
+
+    return render(request, "review.html", context={"formReview": form})
 
 @login_required
 def deleteTicket(request, ticket_id):

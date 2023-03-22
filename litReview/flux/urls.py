@@ -9,6 +9,7 @@ urlpatterns = [
     path("flux/", views.flux, name="flux"),
     path("flux/ticket/", views.create_ticket, name="ticket"),
     path("flux/posts/update_ticket/<ticket_id>", views.create_ticket, name="update-ticket"),
+    path("flux/posts/update_review/<review_id>", views.update_review, name="update-review"),
     path("flux/review/", views.create_review_and_ticket, name="review"),
     path("flux/review_response/<ticket_id>", views.create_review_response, name="review_response"),
     path("flux/posts/", views.posts, name="posts"),

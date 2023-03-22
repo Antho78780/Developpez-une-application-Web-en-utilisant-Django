@@ -47,7 +47,7 @@
                     </div>
                 <div>
                     <a href="{% url 'flux:delete-review' r.id %}"><button type="button" class="btn btn-danger btn_critique">Supprimer</button></a>
-                    <a href=""><button type="button" class="btn btn-success btn_critique">Modifier</button></a>
+                    <a href="{% url 'flux:update-review' r.id %}"><button type="button" class="btn btn-success btn_critique">Modifier</button></a>
                 </div>
             </div>
         </div>
