@@ -3,8 +3,8 @@
 
 ## Installation
 
-- pip install -r requirements.txt
 - python -m venv env
+- pip install -r requirements.txt
 
 ## Pour commencer
 
