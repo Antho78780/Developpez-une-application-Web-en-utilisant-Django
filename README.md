@@ -15,4 +15,4 @@ Pour lancer le serveur taper **python manage.py runserver**.
 
 ## Auteur
 
-* **Anthony Audrain** __alias__ [@Antho78780](https://github.com/Antho78780)
+* **Anthony Audrain** _alias_ [@Antho78780](https://github.com/Antho78780)
